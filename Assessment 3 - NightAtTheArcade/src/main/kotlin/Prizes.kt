@@ -1,0 +1,1 @@
+data class Prizes(var prizeName: String, var prizeStock: Int, var prizeCost: Int)

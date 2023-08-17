@@ -1,55 +1,32 @@
-fun main(args: Array<String>) {
-
-}
-
-
-class Card() {
-    companion object {
-        private var increment = 1
+fun main() {
+    val card1 = Card()
+    val card2 = Card()
+    val game1 = Game(5)
+    val game2 = Game(7)
+    val terminal1 = Terminal()
+    val terminal2 = Terminal()
+    terminal1.addCredits(card1, 20)
+    terminal2.addCredits(card2, 20)
+    println("\n\n>>> Card #1 is used to play Game #1 5 times...")
+    game1.play(card1)
+    println("\n\n>>> Card #2 is used to play Game #2 5 times...")
+    repeat(5)
+    {
+        game2.play(card2)
     }
+    println("\n\n>>> Credits & Tickets will be transferred from Card #1 to Card #2...")
+    terminal1.creditTransfer(card2, card1)
+    terminal1.ticketTransfer(card2, card1)
+    println("\n\n>>> Request prize broccoli with Card #2...")
+    terminal1.prizeRedeem("broccoli", card1)
+    game1.play(card1)
+    println("\n\n>>> Request different prizes with Card #1 and Card #2...")
+    terminal1.prizeRedeem("carrot", card2)
+    terminal1.prizeRedeem("broccoli", card1)
+    terminal1.prizeRedeem("carrot", card1)
+    terminal1.prizeRedeem("tomato", card1)
+    terminal1.prizeRedeem("carrot", card1)
+    terminal1.prizeRedeem("carrot", card1)
 
-    var cardId: Int = increment++
-    var creditBalance: Int = 0
-    var ticketBalance: Int = 0
 
-    constructor(creditBalance: Int = 0, ticketBalance: Int = 0) : this() {
-        this.creditBalance = creditBalance
-        this.ticketBalance = ticketBalance
-    }
-}
-
-class Game() //default credit cost = 1
-{
-    private var creditCost: Int = 1
-
-    constructor(creditCost: Int = 1) : this() {
-        this.creditCost = creditCost
-    }
-
-    fun random(card: Card): Int {
-        if (card.creditBalance < creditCost) {
-            println("You have insufficient credits | Game cost: $creditCost | Credit balance: ${card.creditBalance}")
-            return 0
-        }
-        val ticketRandom = (1..30).random() * creditCost
-        card.ticketBalance += ticketRandom
-        card.creditBalance -= creditCost
-        return (ticketRandom)
-    }
-}
-
-class Terminal() {
-    fun addCredits(card: Card, creditBalanceAdd: Int) {
-        card.creditBalance += creditBalanceAdd * 2
-    }
-
-    fun creditTransfer(creditTransfer: Card, creditReceive: Card) {
-        creditReceive.creditBalance += creditTransfer.creditBalance
-        creditTransfer.creditBalance = 0
-    }
-
-    fun ticketTransfer(ticketTransfer: Card, ticketReceive: Card) {
-        ticketReceive.ticketBalance += ticketTransfer.ticketBalance
-        ticketTransfer.ticketBalance = 0
-    }
 }
