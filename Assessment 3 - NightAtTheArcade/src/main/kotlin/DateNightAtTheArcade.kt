@@ -10,8 +10,7 @@ fun main() {
     println("\n\n>>> Card #1 is used to play Game #1 5 times...")
     game1.play(card1)
     println("\n\n>>> Card #2 is used to play Game #2 5 times...")
-    repeat(5)
-    {
+    repeat(5) {
         game2.play(card2)
     }
     println("\n\n>>> Credits & Tickets will be transferred from Card #1 to Card #2...")
@@ -27,6 +26,4 @@ fun main() {
     terminal1.prizeRedeem("tomato", card1)
     terminal1.prizeRedeem("carrot", card1)
     terminal1.prizeRedeem("carrot", card1)
-
-
 }
